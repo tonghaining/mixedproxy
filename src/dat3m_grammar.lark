@@ -1,0 +1,92 @@
+start : header variable_decl_list instructions assertion_list
+
+
+header: litmus_language test_title
+
+litmus_language: "PTX"
+               | "ptx"
+test_title : string
+
+variable_decl_list : "{" variable_decl* "}"
+?variable_decl : register_decl ";"               // not support initialize to register, will do nothing
+               | location_decl ";"
+register_decl : num ":" register "=" constant
+location_decl : location "=" constant           // Only initialize the Address, not support assign any value
+
+
+instructions: thread_decl_list instruction_list
+
+thread_decl_list: thread_decl ("|" thread_decl)* ";"
+thread_decl: "P" num "@" "cta" num "," "gpu" num
+
+instruction_list : instruction_row*
+instruction_row : instruction ("|" instruction)* ";"
+?instruction: load
+            | store
+            | fence
+
+load    : /ld/ sem scope register "," location
+        | /ld/ weak none register "," location
+
+store   : /st/ sem scope location "," value
+        | /st/ weak none location "," value
+
+fence   : /fence/ sem scope
+
+?value: constant
+      | register
+
+!sem : "." "weak"
+     | "." "release"
+     | "." "relaxed"
+     | "." "acquire"
+     | "." "relaxed"
+     | "." "acq_rel"
+     | "." "bar_sync"
+
+!weak: "." "weak"
+     | none
+
+!scope: "." "cta"
+      | "." "gpu"
+      | "." "sys"
+      | none
+
+?none:
+
+assertion_list : assertion (";" assertion)*
+assertion : "exists" "(" condition ")" -> exist
+          | "~" "exists" "(" condition ")" -> forbid
+          | "forall" "(" condition ")" -> forall
+
+condition: condition_and
+         | condition "\\/" condition -> or_
+
+?condition_and: condition_eq
+             | condition_and "/\\" condition_and -> and_ // TODO: check ->
+
+condition_eq: assertion_value "==" assertion_value -> eq
+            | assertion_value "=" assertion_value -> eq
+            | assertion_value "!=" assertion_value -> neq
+
+?assertion_value : assertion_register // NO location check
+                 | constant
+
+?assertion_register: thread_id ":" register
+
+constant: num
+thread_id:  "P" num
+register:   "%" string
+?location:   string
+
+?string:    CNAME
+num:        INT
+
+%import common.INT
+%import common.CNAME
+%import common.WS
+
+%ignore WS
+
+COMMENT: "\"" /[^\n]/*
+%ignore COMMENT

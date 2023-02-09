@@ -1,0 +1,21 @@
+.global x;
+.global y;
+
+d2.b2.t2 {
+  st.release.sys [x], 0;
+  st.release.sys [y], 0;
+}
+
+d0.b0.t0 {
+  st [x], 1;
+  fence.acq_rel.sys;
+  ld r1, [y];
+}
+
+d1.b1.t1 {
+  st [y], 1;
+  fence.acq_rel.sys;
+  ld r2, [x];
+}
+
+assert (r1 != 0 && r2 != 0) as outcome;

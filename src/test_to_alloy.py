@@ -6,7 +6,8 @@ import output
 import subprocess
 import os
 import re
-from litmus_parser import parse
+# from litmus_parser import parse
+from dat3m_parser import parse
 
 
 basepath = os.path.dirname(__file__) + "/.."
