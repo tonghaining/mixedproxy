@@ -55,9 +55,9 @@ fence   : /fence/ sem scope
 ?none:
 
 assertion_list : assertion (";" assertion)*
-assertion : "exists" "(" condition ")" -> exist
-          | "~" "exists" "(" condition ")" -> forbid
-          | "forall" "(" condition ")" -> forall
+assertion : "exists" "(" condition ")" -> exist_
+          | "~" "exists" "(" condition ")" -> forbid_
+          | "forall" "(" condition ")" -> forall_
 
 condition: condition_and
          | condition "\\/" condition -> or_

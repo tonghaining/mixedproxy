@@ -225,9 +225,6 @@ class AlloyEmitter:
     def command_or(self, a, b):
         return f"({a} or {b})"
 
-    def command_not(self, ab):
-        return f"(not {a})"
-
     def command_not(self, a):
         return f"not {a}"
 

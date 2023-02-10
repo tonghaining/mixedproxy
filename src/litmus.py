@@ -425,17 +425,6 @@ class Or(Condition):
         )
 
 
-class Not(Condition):
-    def __init__(self, a):
-        self.a = a
-
-    def __str__(self):
-        return f"not {self.a}"
-
-    def to_alloy(self, test):
-        return test.alloy_emitter.command_not(self.a.to_alloy(test))
-
-
 class Equal(Condition):
     def __init__(self, a, b):
         self.a = a

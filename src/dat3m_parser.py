@@ -68,7 +68,7 @@ class Dat3mTransformer(lark.Transformer):
         return None
 
     def thread_decl(self, meta, thread_id, cta_id, gpu_id):
-        self.thread_navigator[meta.column] = (int(thread_id), int(cta_id), int(gpu_id))
+        self.thread_navigator[meta.column] = (int(gpu_id), int(cta_id), int(thread_id))
 
     def _check_sem_scope(self, meta, sem, scope, event):
         if sem == WEAK:
@@ -165,7 +165,7 @@ class Dat3mTransformer(lark.Transformer):
         else:
             return None
 
-    def weak(self, meta, *args):#TODO
+    def weak(self, meta, *args):
         return None
 
     def none(self, meta):
@@ -204,15 +204,15 @@ class Dat3mTransformer(lark.Transformer):
     def no_name(self, meta):
         return ""
 
-    def exist(self, meta, expr):
+    def exist_(self, meta, expr):
         name = f"exist{self._new_id()}"
         return Command(name, expr, expected=True, line=meta.line)
 
-    def forbid(self, meta, expr):
+    def forbid_(self, meta, expr):
         name = f"forbid{self._new_id()}"
         return Command(name, Not(expr), expected=False, line=meta.line)
 
-    def forall(self, meta, expr):
+    def forall_(self, meta, expr):
         name = f"forall{self._new_id()}"
         return Command(name, expr, expected=False, line=meta.line)
 
