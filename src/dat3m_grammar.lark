@@ -24,6 +24,7 @@ instruction_row : instruction ("|" instruction)* ";"
 ?instruction: load
             | store
             | fence
+            | none
 
 load    : /ld/ sem scope register "," location
         | /ld/ weak none register "," location
