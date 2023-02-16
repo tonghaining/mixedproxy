@@ -10,7 +10,7 @@ test_title : string
 variable_decl_list : "{" variable_decl* "}"
 ?variable_decl : register_decl ";"               // not support initialize to register, will do nothing
                | location_decl ";"
-register_decl : num ":" register "=" constant
+register_decl : "P" num ":" register "=" constant
 location_decl : location "=" constant           // Only initialize the Address, not support assign any value
 
 
