@@ -103,14 +103,12 @@ class Dat3mTransformer(lark.Transformer):
                 meta,
                 f"illegal encoding: red does not support .{sem} accesses",
             )
-        if event == FENCE and sem not in [ACQ_REL, BAR_SYNC]:
+        if event == FENCE and sem not in [ACQ_REL, SC]:
             raise ParseException(
                 self.text,
                 meta,
                 f"illegal encoding: fence does not support .{sem} accesses",
             )
-        if event == FENCE and sem == BAR_SYNC:
-            sem = SC
         return sem, scope
 
     def _update_thread_event(self, meta, event):

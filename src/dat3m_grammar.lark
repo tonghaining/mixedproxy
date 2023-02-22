@@ -49,7 +49,7 @@ fence   : /fence/ sem scope
      | "." "acquire"
      | "." "relaxed"
      | "." "acq_rel"
-     | "." "bar_sync"
+     | "." "sc"
 
 !weak: "." "weak"
      | none

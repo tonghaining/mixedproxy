@@ -20,7 +20,6 @@ RELEASE = "release"
 ACQUIRE = "acquire"
 WEAK = "weak"
 ACQ_REL = "acq_rel"
-BAR_SYNC = "bar_sync"
 SC = "sc"
 
 # atomic operation
