@@ -134,7 +134,7 @@ class Transformer(lark.Transformer):
     def red(self, meta, op, atomic_op, sem, scope, src, value):
         if sem == "volatile":
             raise ParseException(self.text, meta, "illegal modifier .volatile")
-        return atom(
+        return Atom(
             name=self._new_id(),
             op=op,
             sem=sem,

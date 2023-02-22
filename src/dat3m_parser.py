@@ -6,7 +6,6 @@ import lark
 from litmus import *
 from constants import *
 
-
 ################################################################################
 # Dat3m litmus test parser
 ################################################################################
@@ -17,9 +16,10 @@ grammar_path = os.path.join(file_path, "dat3m_grammar.lark")
 with open(grammar_path, "r") as f:
     grammar = f.read()
 
+
 class ParseException(Exception):
     def __init__(self, text, meta, message):
-        text = text[meta.start_pos : meta.end_pos]
+        text = text[meta.start_pos: meta.end_pos]
         text = " ".join([i.strip() for i in text.split("\n")])
         self.message = f"Line {meta.line}: '{text}': {message}"
 
@@ -91,6 +91,18 @@ class Dat3mTransformer(lark.Transformer):
                 meta,
                 f"illegal encoding: load does not support .{sem} accesses",
             )
+        if event == ATOM and sem not in [RELAXED, ACQ_REL]:
+            raise ParseException(
+                self.text,
+                meta,
+                f"illegal encoding: atom does not support .{sem} accesses",
+            )
+        if event == RED and sem not in [RELAXED, ACQ_REL]:
+            raise ParseException(
+                self.text,
+                meta,
+                f"illegal encoding: red does not support .{sem} accesses",
+            )
         if event == FENCE and sem not in [ACQ_REL, BAR_SYNC]:
             raise ParseException(
                 self.text,
@@ -143,6 +155,40 @@ class Dat3mTransformer(lark.Transformer):
         )
         self._update_thread_event(meta, event)
 
+    def atom(self, meta, op, sem, scope, atomic_op, dst, src, value):
+        sem, scope = self._check_sem_scope(meta, sem, scope, ATOM)
+        event = Atom(
+            name=self._new_id(),
+            op=op,
+            atomic_op=atomic_op,
+            sem=sem,
+            scope=scope,
+            proxy=GENERIC,
+            dst=dst,
+            src=src,
+            value=value,
+            return_value=NoValue(),
+            line=meta.line,
+        )
+        self._update_thread_event(meta, event)
+
+    def red(self, meta, op, sem, scope, atomic_op, src, value):
+        sem, scope = self._check_sem_scope(meta, sem, scope, ATOM)
+        event = Atom(
+            name=self._new_id(),
+            op=op,
+            atomic_op=atomic_op,
+            sem=sem,
+            scope=scope,
+            proxy=GENERIC,
+            dst=None,
+            src=src,
+            value=value,
+            return_value=NoValue(),
+            line=meta.line,
+        )
+        self._update_thread_event(meta, event)
+
     def fence(self, meta, op, sem, scope):
         sem, scope = self._check_sem_scope(meta, sem, scope, FENCE)
         event = Fence(
@@ -164,6 +210,15 @@ class Dat3mTransformer(lark.Transformer):
             return str(arg)
         else:
             return None
+
+    def atomic_op(self, meta, dot=None, arg=None):
+        if str(arg) == "plus":
+            return "add"
+        raise ParseException(
+            self.text,
+            meta,
+            f"Tht atomic operation: {meta.column} is not supported",
+        )
 
     def weak(self, meta, *args):
         return None

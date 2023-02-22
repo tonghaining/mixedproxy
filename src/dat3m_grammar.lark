@@ -23,6 +23,8 @@ instruction_list : instruction_row*
 instruction_row : instruction ("|" instruction)* ";"
 ?instruction: load
             | store
+            | atom
+            | red
             | fence
             | none
 
@@ -31,6 +33,10 @@ load    : /ld/ sem scope register "," location
 
 store   : /st/ sem scope location "," value
         | /st/ weak none location "," value
+
+atom    : /atom/ sem scope atomic_op register "," location "," value
+
+red     : /red/ sem scope atomic_op location "," value
 
 fence   : /fence/ sem scope
 
@@ -53,6 +59,8 @@ fence   : /fence/ sem scope
       | "." "sys"
       | none
 
+!atomic_op: "." "plus"
+
 ?none:
 
 assertion_list : assertion (";" assertion)*
@@ -64,7 +72,7 @@ condition: condition_and
          | condition "\\/" condition -> or_
 
 ?condition_and: condition_eq
-             | condition_and "/\\" condition_and -> and_ // TODO: check ->
+             | condition_and "/\\" condition_and -> and_
 
 condition_eq: assertion_value "==" assertion_value -> eq
             | assertion_value "=" assertion_value -> eq
