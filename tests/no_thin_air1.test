@@ -1,0 +1,14 @@
+.global x;
+.global y;
+
+d0.b0.t0 {
+  ld.weak r0, [x];
+  st.weak [y], r0;
+}
+
+d0.b1.t1 {
+  ld.weak r1, [y];
+  st.weak [x], r1;
+}
+
+assert (r0 == 0 && r1 == 0) as no_thin_air;

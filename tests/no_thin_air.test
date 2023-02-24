@@ -1,0 +1,14 @@
+.global x;
+.global y;
+
+d0.b0.t0 {
+  ld.weak r1, [y];
+  st.weak [x], r1;
+}
+
+d0.b1.t1 {
+  ld.weak r2, [x];
+  st.weak [y], r2;
+}
+
+assert (r1 != 42 && r2 != 42) as my_test;

@@ -1,5 +1,5 @@
 PTX Scope
-"scope test, true"
+"scope test"
 {
 x = 0;
 flag1 = 0;
