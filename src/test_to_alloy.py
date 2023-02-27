@@ -6,8 +6,8 @@ import output
 import subprocess
 import os
 import re
-# from litmus_parser import parse
-from dat3m_parser import parse
+from litmus_parser import parse
+# from dat3m_parser import parse
 
 
 basepath = os.path.dirname(__file__) + "/.."
@@ -156,7 +156,7 @@ def main(argv=sys.argv[1:], input_string=None):
 
     warning_string = """// NVLitmus is a research prototype, and comes with no guarantees of completeness, correctness, or authoritativeness.  Please see https://github.com/NVlabs/mixedproxy for more information.
 """
-    # output.info(warning_string)
+    output.info(warning_string)
     output.godbolt(warning_string)
 
     with open(args.model, "r") as f:

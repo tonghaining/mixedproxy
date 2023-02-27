@@ -32,12 +32,10 @@ def prepare_csv_row(file_name, result):
 def check_litmus(file):
     with open(base_path + "/dat3m_tests/" + file, "r") as f:
         test = f.read()
-    try:
-        with Capturing() as output:
-            test_to_alloy.run_alloy(model=model, text=test, allow_failure=True)
-    except Exception as e:
-        print(f"{type(e).__name__} at line {e.__traceback__.tb_lineno} of {__file__}: {e}")
-        return False
+    with Capturing() as output:
+        test_to_alloy.run_alloy(model=model, text=test, allow_failure=True)
+    if len(output) != 0 and output[0] != "Alloy exited with code 10":
+        print(f"Unexpected error while check the file: {file}, detailed info:\n {output[0]}")
     return len(output) == 0
 
 

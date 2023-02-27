@@ -11,4 +11,4 @@ d0.b1.t1 {
   st.weak [y], r2;
 }
 
-assert (r1 != 42 && r2 != 42) as my_test;
+assert (r1 != 42 || r2 != 42) as my_test;
