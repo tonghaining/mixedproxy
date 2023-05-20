@@ -128,9 +128,12 @@ pred seq_cst {
 pred no_thin_air {
   acyclic[rf + dep]
 }
+pred sc_per_location {
+  acyclic[strong[com] + po_loc]
+}
 
 pred ptx_mm {
-  no_thin_air and atomicity and coherence and causality and seq_cst
+  no_thin_air and atomicity and coherence and causality and seq_cst and sc_per_location
 }
 
 
@@ -143,7 +146,7 @@ fun cause : Op->Op {
 }
 
 fun sync : Op->Op {
-  release_sequence.^observation.acquire_sequence
+  strong[release_sequence.^observation.acquire_sequence]
 }
 
 fun release_sequence : Op->Op {
@@ -164,6 +167,7 @@ fun observation : Op->Op {
 fun acquire_sequence : Op->Op {
   (Read <: optional[po_loc] :> ReadAcquire)
   /* 2) A Read followed by an AcquireFence (or greater) */
+  + (Read <: ^po :> AcquireFences)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
