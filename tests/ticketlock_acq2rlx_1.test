@@ -1,0 +1,21 @@
+.global x;
+.global y;
+.global z;
+
+d0.b0.t0 {
+  atom.add.relaxed.gpu r1, [y], 1;
+  ld.acquire.gpu r2, [z];
+  ld.weak r3, [x];
+  st.weak [x], 1;
+  atom.add.release.gpu r4, [z], 1;
+}
+
+d0.b0.t1 {
+  atom.add.acquire.gpu r11, [y], 1;
+  ld.acquire.gpu r12, [z];
+  ld.weak r13, [x];
+  st.weak [x], 1;
+  atom.add.release.gpu r14, [z], 1;
+}
+
+permit (r1 == r2 && r11 == r12 && r4 != r14 && r2 != r12 && r3 == 0 && r13 == 0) as outcome;
