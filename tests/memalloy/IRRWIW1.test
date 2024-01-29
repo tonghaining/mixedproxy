@@ -1,27 +1,28 @@
 .global x;
+.global y;
 
 d0.b0.t0 {
-  st.weak [x], 1;
+  st.weak [x], 2;
 }
 
 d0.b1.t1 {
   ld.weak r1, [x];
   fence.sc.cta;
-  ld.weak r2, [x];
+  ld.weak r2, [y];
 }
 
 d0.b1.t2 {
-  st.weak [x], 2;
+  st.weak [x], 1;
 }
 
 d0.b1.t3 {
   ld.weak r4, [x];
   fence.sc.gpu;
-  st.weak [x], 3;
+  st.weak [y], 1;
 }
 
-d0.b1.t4 {
+d0.b2.t4 {
   ld.weak r6, [x];
 }
 
-permit(r1 == 1 && r2 == 0 && r4 == 2 && r6 == 1) as check_irrwiw_uniproc;
+permit(r1 == 2 && r2 == 0 && r4 == 1 && r6 == 2) as check_irrwiw1;

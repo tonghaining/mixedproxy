@@ -1,0 +1,31 @@
+.global x;
+.global y;
+
+d0.b0.t0 {
+  st.weak [x], 2;
+}
+
+d0.b1.t1 {
+  ld.weak r1, [x];
+  fence.sc.cta;
+  st.weak [y], 1;
+}
+
+d0.b1.t2 {
+  st.weak [x], 2;
+}
+
+d0.b1.t3 {
+  ld.weak r4, [x];
+  fence.sc.gpu;
+  st.weak [y], 1;
+}
+
+d0.b2.t4 {
+  ld.weak r5, [x];
+}
+
+d0.b2.t5 {
+  ld.weak r6, [y];
+}
+permit(r1 == 2 && r4 == 2 && r5 == 2 && r6 == 2) as check_irwiw2;

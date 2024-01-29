@@ -12,13 +12,9 @@ d0.b1.t1 {
 }
 
 d0.b1.t2 {
-  st.weak [x], 2;
+  st.weak [x], 1;
   fence.sc.gpu;
-  st.weak [y], 3;
+  ld.weak r3, [y];
 }
 
-d0.b1.t4 {
-  ld.weak r3, [x];
-}
-
-permit(r1 == 1 && r2 == 0 && r3 == 1) as check_wrr_2w;
+permit(r1 == 1 && r2 == 0 && r3 == 0) as check_rwc1;

@@ -1,0 +1,20 @@
+.global x;
+.global y;
+
+d0.b0.t0 {
+  st.weak [x], 1;
+}
+
+d0.b1.t1 {
+  ld.weak r1, [x];
+  fence.sc.gpu;
+  st.weak [y], 1;
+}
+
+d0.b1.t2 {
+  ld.weak r2, [x];
+  fence.sc.cta;
+  ld.weak r3, [y];
+}
+
+permit(r1 == 1 && r2 == 1 && r3 == 0) as check_wrr_2w;
