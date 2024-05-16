@@ -1,0 +1,122 @@
+.global x0;
+.global x1;
+.global x2;
+.global x3;
+.global x4;
+.global x5;
+.global x6;
+.global x7;
+.global x8;
+.global x9;
+.global x10;
+.global x11;
+.global x12;
+.global x13;
+.global x14;
+.global x15;
+.global x16;
+.global x17;
+.global x18;
+.global x19;
+
+d0.b0.t0 {
+  st.release.gpu [x0], 1;
+  ld.acquire.gpu r1, [x1] == 0;
+}
+
+d0.b1.t0 {
+  st.release.gpu [x1], 1;
+  ld.acquire.gpu r2, [x2] == 0;
+}
+
+d0.b2.t0 {
+  st.release.gpu [x2], 1;
+  ld.acquire.gpu r3, [x3] == 0;
+}
+
+d0.b3.t0 {
+  st.release.gpu [x3], 1;
+  ld.acquire.gpu r4, [x4] == 0;
+}
+
+d0.b4.t0 {
+  st.release.gpu [x4], 1;
+  ld.acquire.gpu r5, [x5] == 0;
+}
+
+d0.b5.t0 {
+  st.release.gpu [x5], 1;
+  ld.acquire.gpu r6, [x6] == 0;
+}
+
+d0.b6.t0 {
+  st.release.gpu [x6], 1;
+  ld.acquire.gpu r7, [x7] == 0;
+}
+
+d0.b7.t0 {
+  st.release.gpu [x7], 1;
+  ld.acquire.gpu r8, [x8] == 0;
+}
+
+d0.b8.t0 {
+  st.release.gpu [x8], 1;
+  ld.acquire.gpu r9, [x9] == 0;
+}
+
+d0.b9.t0 {
+  st.release.gpu [x9], 1;
+  ld.acquire.gpu r10, [x10] == 0;
+}
+
+d0.b10.t0 {
+  st.release.gpu [x10], 1;
+  ld.acquire.gpu r11, [x11] == 0;
+}
+
+d0.b11.t0 {
+  st.release.gpu [x11], 1;
+  ld.acquire.gpu r12, [x12] == 0;
+}
+
+d0.b12.t0 {
+  st.release.gpu [x12], 1;
+  ld.acquire.gpu r13, [x13] == 0;
+}
+
+d0.b13.t0 {
+  st.release.gpu [x13], 1;
+  ld.acquire.gpu r14, [x14] == 0;
+}
+
+d0.b14.t0 {
+  st.release.gpu [x14], 1;
+  ld.acquire.gpu r15, [x15] == 0;
+}
+
+d0.b15.t0 {
+  st.release.gpu [x15], 1;
+  ld.acquire.gpu r16, [x16] == 0;
+}
+
+d0.b16.t0 {
+  st.release.gpu [x16], 1;
+  ld.acquire.gpu r17, [x17] == 0;
+}
+
+d0.b17.t0 {
+  st.release.gpu [x17], 1;
+  ld.acquire.gpu r18, [x18] == 0;
+}
+
+d0.b18.t0 {
+  st.release.gpu [x18], 1;
+  ld.acquire.gpu r19, [x19] == 0;
+}
+
+d0.b19.t0 {
+  st.release.gpu [x19], 1;
+  ld.acquire.gpu r0, [x0] == 0;
+}
+
+permit (r0 == 0) as sb20;

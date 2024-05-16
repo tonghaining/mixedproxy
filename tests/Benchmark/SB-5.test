@@ -1,0 +1,32 @@
+.global x0;
+.global x1;
+.global x2;
+.global x3;
+.global x4;
+
+d0.b0.t0 {
+  st.release.gpu [x0], 1;
+  ld.acquire.gpu r1, [x1] == 0;
+}
+
+d0.b1.t0 {
+  st.release.gpu [x1], 1;
+  ld.acquire.gpu r2, [x2] == 0;
+}
+
+d0.b2.t0 {
+  st.release.gpu [x2], 1;
+  ld.acquire.gpu r3, [x3] == 0;
+}
+
+d0.b3.t0 {
+  st.release.gpu [x3], 1;
+  ld.acquire.gpu r4, [x4] == 0;
+}
+
+d0.b4.t0 {
+  st.release.gpu [x4], 1;
+  ld.acquire.gpu r0, [x0] == 0;
+}
+
+permit (r0 == 0) as sb5;

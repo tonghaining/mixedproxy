@@ -1,0 +1,242 @@
+.global x0;
+.global x1;
+.global x2;
+.global x3;
+.global x4;
+.global x5;
+.global x6;
+.global x7;
+.global x8;
+.global x9;
+.global x10;
+.global x11;
+.global x12;
+.global x13;
+.global x14;
+.global x15;
+.global x16;
+.global x17;
+.global x18;
+.global x19;
+.global x20;
+.global x21;
+.global x22;
+.global x23;
+.global x24;
+.global x25;
+.global x26;
+.global x27;
+.global x28;
+.global x29;
+.global x30;
+.global x31;
+.global x32;
+.global x33;
+.global x34;
+.global x35;
+.global x36;
+.global x37;
+.global x38;
+.global x39;
+
+d0.b0.t0 {
+  st.weak [x0], 1;
+  st.release.gpu [x1], 1;
+}
+
+d0.b1.t0 {
+  ld.acquire.gpu r1, [x1] == 1;
+  st.release.gpu [x2], 1;
+}
+
+d0.b2.t0 {
+  ld.acquire.gpu r2, [x2] == 1;
+  st.release.gpu [x3], 1;
+}
+
+d0.b3.t0 {
+  ld.acquire.gpu r3, [x3] == 1;
+  st.release.gpu [x4], 1;
+}
+
+d0.b4.t0 {
+  ld.acquire.gpu r4, [x4] == 1;
+  st.release.gpu [x5], 1;
+}
+
+d0.b5.t0 {
+  ld.acquire.gpu r5, [x5] == 1;
+  st.release.gpu [x6], 1;
+}
+
+d0.b6.t0 {
+  ld.acquire.gpu r6, [x6] == 1;
+  st.release.gpu [x7], 1;
+}
+
+d0.b7.t0 {
+  ld.acquire.gpu r7, [x7] == 1;
+  st.release.gpu [x8], 1;
+}
+
+d0.b8.t0 {
+  ld.acquire.gpu r8, [x8] == 1;
+  st.release.gpu [x9], 1;
+}
+
+d0.b9.t0 {
+  ld.acquire.gpu r9, [x9] == 1;
+  st.release.gpu [x10], 1;
+}
+
+d0.b10.t0 {
+  ld.acquire.gpu r10, [x10] == 1;
+  st.release.gpu [x11], 1;
+}
+
+d0.b11.t0 {
+  ld.acquire.gpu r11, [x11] == 1;
+  st.release.gpu [x12], 1;
+}
+
+d0.b12.t0 {
+  ld.acquire.gpu r12, [x12] == 1;
+  st.release.gpu [x13], 1;
+}
+
+d0.b13.t0 {
+  ld.acquire.gpu r13, [x13] == 1;
+  st.release.gpu [x14], 1;
+}
+
+d0.b14.t0 {
+  ld.acquire.gpu r14, [x14] == 1;
+  st.release.gpu [x15], 1;
+}
+
+d0.b15.t0 {
+  ld.acquire.gpu r15, [x15] == 1;
+  st.release.gpu [x16], 1;
+}
+
+d0.b16.t0 {
+  ld.acquire.gpu r16, [x16] == 1;
+  st.release.gpu [x17], 1;
+}
+
+d0.b17.t0 {
+  ld.acquire.gpu r17, [x17] == 1;
+  st.release.gpu [x18], 1;
+}
+
+d0.b18.t0 {
+  ld.acquire.gpu r18, [x18] == 1;
+  st.release.gpu [x19], 1;
+}
+
+d0.b19.t0 {
+  ld.acquire.gpu r19, [x19] == 1;
+  st.release.gpu [x20], 1;
+}
+
+d0.b20.t0 {
+  ld.acquire.gpu r20, [x20] == 1;
+  st.release.gpu [x21], 1;
+}
+
+d0.b21.t0 {
+  ld.acquire.gpu r21, [x21] == 1;
+  st.release.gpu [x22], 1;
+}
+
+d0.b22.t0 {
+  ld.acquire.gpu r22, [x22] == 1;
+  st.release.gpu [x23], 1;
+}
+
+d0.b23.t0 {
+  ld.acquire.gpu r23, [x23] == 1;
+  st.release.gpu [x24], 1;
+}
+
+d0.b24.t0 {
+  ld.acquire.gpu r24, [x24] == 1;
+  st.release.gpu [x25], 1;
+}
+
+d0.b25.t0 {
+  ld.acquire.gpu r25, [x25] == 1;
+  st.release.gpu [x26], 1;
+}
+
+d0.b26.t0 {
+  ld.acquire.gpu r26, [x26] == 1;
+  st.release.gpu [x27], 1;
+}
+
+d0.b27.t0 {
+  ld.acquire.gpu r27, [x27] == 1;
+  st.release.gpu [x28], 1;
+}
+
+d0.b28.t0 {
+  ld.acquire.gpu r28, [x28] == 1;
+  st.release.gpu [x29], 1;
+}
+
+d0.b29.t0 {
+  ld.acquire.gpu r29, [x29] == 1;
+  st.release.gpu [x30], 1;
+}
+
+d0.b30.t0 {
+  ld.acquire.gpu r30, [x30] == 1;
+  st.release.gpu [x31], 1;
+}
+
+d0.b31.t0 {
+  ld.acquire.gpu r31, [x31] == 1;
+  st.release.gpu [x32], 1;
+}
+
+d0.b32.t0 {
+  ld.acquire.gpu r32, [x32] == 1;
+  st.release.gpu [x33], 1;
+}
+
+d0.b33.t0 {
+  ld.acquire.gpu r33, [x33] == 1;
+  st.release.gpu [x34], 1;
+}
+
+d0.b34.t0 {
+  ld.acquire.gpu r34, [x34] == 1;
+  st.release.gpu [x35], 1;
+}
+
+d0.b35.t0 {
+  ld.acquire.gpu r35, [x35] == 1;
+  st.release.gpu [x36], 1;
+}
+
+d0.b36.t0 {
+  ld.acquire.gpu r36, [x36] == 1;
+  st.release.gpu [x37], 1;
+}
+
+d0.b37.t0 {
+  ld.acquire.gpu r37, [x37] == 1;
+  st.release.gpu [x38], 1;
+}
+
+d0.b38.t0 {
+  ld.acquire.gpu r38, [x38] == 1;
+  st.release.gpu [x39], 1;
+}
+
+d0.b39.t0 {
+  ld.acquire.gpu r39, [x39] == 1;
+  ld.weak r0, [x0];
+}
+
+assert (r0 == 1) as mp_transitive;

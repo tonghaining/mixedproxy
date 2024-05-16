@@ -1,0 +1,22 @@
+.global x0;
+.global x1;
+
+d0.b0.t0 {
+  st.release.gpu [x0], 1;
+}
+
+d0.b1.t0 {
+  st.release.gpu [x1], 1;
+}
+
+d0.b2.t0 {
+  ld.acquire.gpu r0, [x0] == 1;
+  ld.acquire.gpu r1, [x1] == 0;
+}
+
+d0.b3.t0 {
+  ld.acquire.gpu r2, [x0] == 0;
+  ld.acquire.gpu r3, [x1];
+}
+
+permit (r3 == 1) as iriw4;
